@@ -1,13 +1,14 @@
-function typeWriter(sentence) {
-  let index = 0;
-  const interval = setInterval(() => {
-    process.stdout.write(sentence[index]);
-    index++;
-    if (index === sentence.length) {
-      clearInterval(interval);
-      console.log('\n'); //Fix the bug we identified earlier by adding a newline character at the end of the animation.
-    }
-  }, 50);
-}
+const sentence = "hello there from lighthouse labs";
 
-typeWriter("Vanessa is a lil coder!!!");
+function typeWriter(index) {
+  if (index < sentence.length) {
+    process.stdout.write(sentence[index]);
+    setTimeout(() => {
+      typeWriter(index + 1);
+    }, 50);
+  } else {
+    process.stdout.write('\n'); // Fix the bug we identified earlier by adding a newline character at the end of the animation.
+  };
+};
+
+typeWriter(0);
